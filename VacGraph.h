@@ -102,6 +102,7 @@ private:
     int FilterMostTotalCost(int start, int end);
     //Finid maxmun total cost of all path between two vertices
     void readFromeFile();
+    void print(int **a, int cols, int rows);
 };
 
 #endif // VACGRAPH_H

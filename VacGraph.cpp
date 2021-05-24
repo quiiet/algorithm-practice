@@ -19,7 +19,6 @@ CityGraph<T>::CityGraph(int vertices)
 {
     vertexNum = vertices;
     n = vertices;
-    cout << "ug" << endl;
     edgeNum = 0;
     graphMatrix = new T*[vertexNum + 1];
     for (int i = 1; i <= vertexNum; i++) {
@@ -31,13 +30,12 @@ CityGraph<T>::CityGraph(int vertices)
             graphMatrix[i][j] = 0;
         }
     }
-    cout << "ug" << endl;
     //initialize distance matrix
     a = new int*[n];
     for (int i = 0; i < n; i++) a[i] = new int[n];
-    cout << "ug" << endl;
     readFromeFile();
-    DecideMostVacStorageCity();
+    //FindBestVacAssistanceCity();
+    //DecideMostVacStorageCity();
 }
 
 /**
@@ -373,5 +371,19 @@ void CityGraph<T>:: readFromeFile()
         int dis = stoi(temp);
         a[v - 1][u - 1] = dis;
     }
+    print(a, 105, 105);
     myfile.close();
+}
+
+template <class T>
+void CityGraph<T>::print(int **a, int cols, int rows)
+{
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
 }
