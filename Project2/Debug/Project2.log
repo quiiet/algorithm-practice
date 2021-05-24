@@ -1,0 +1,53 @@
+﻿  main.cpp
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(159,44): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(186,16): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(160,13): error C2760: 语法错误: 意外标记 "if"，应为 ";"
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(199,75): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(214,30): error C3872: “0xe0a5”: 此字符不允许在标识符中使用
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(214,95): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(238,42): error C3872: “0xe0a5”: 此字符不允许在标识符中使用
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(238,107): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(247,86): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(199,1): error C3688: 文本后缀“鐨勭柅鑻楀奖鍝嶅姏”无效；未找到文文本运算符或文本运算符模板“operator """"鐨勭柅鑻楀奖鍝嶅姏”
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(203,5): error C2760: 语法错误: 意外标记 "标识符"，应为 ";"
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(274,49): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(302,17): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(275,13): error C2760: 语法错误: 意外标记 "if"，应为 ";"
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(315,81): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(325,45): error C3872: “0xe1da”: 此字符不允许在标识符中使用
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(325,213): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(329,34): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(333,163): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(357,47): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(365,179): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(315,1): error C3688: 文本后缀“鐨勭梾姣掑奖鍝嶅姏”无效；未找到文文本运算符或文本运算符模板“operator """"鐨勭梾姣掑奖鍝嶅姏”
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(319,5): error C2760: 语法错误: 意外标记 "标识符"，应为 ";"
+  VacGraph.cpp
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.h(1,1): warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(159,44): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(186,16): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(160,13): error C2760: 语法错误: 意外标记 "if"，应为 ";"
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(199,75): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(214,30): error C3872: “0xe0a5”: 此字符不允许在标识符中使用
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(214,95): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(238,42): error C3872: “0xe0a5”: 此字符不允许在标识符中使用
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(238,107): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(247,86): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(199,1): error C3688: 文本后缀“鐨勭柅鑻楀奖鍝嶅姏”无效；未找到文文本运算符或文本运算符模板“operator """"鐨勭柅鑻楀奖鍝嶅姏”
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(203,5): error C2760: 语法错误: 意外标记 "标识符"，应为 ";"
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(274,49): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(302,17): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(275,13): error C2760: 语法错误: 意外标记 "if"，应为 ";"
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(315,81): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(325,45): error C3872: “0xe1da”: 此字符不允许在标识符中使用
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(325,213): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(329,34): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(333,163): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(357,47): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(365,179): error C2001: 常量中有换行符
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(315,1): error C3688: 文本后缀“鐨勭梾姣掑奖鍝嶅姏”无效；未找到文文本运算符或文本运算符模板“operator """"鐨勭梾姣掑奖鍝嶅姏”
+F:\Study\GITSTROGRE\algorithm-practice\VacGraph.cpp(319,5): error C2760: 语法错误: 意外标记 "标识符"，应为 ";"
+  正在生成代码...
