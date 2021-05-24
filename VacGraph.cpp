@@ -35,17 +35,9 @@ CityGraph<T>::CityGraph(int vertices)
     map = new int*[n];
     for (int i = 0; i < n; i++) map[i] = new int[n];
     readFromeFile();
-
-//    for (int i = 0; i < 105; i++)
-//    {
-//        for (int j = 0; j < 105; j++)
-//        {
-//            aaa[i][j]=0;
-//        }
-//      //  cout << endl;
-////    }
     //FindBestVacAssistanceCity();
     //DecideMostVacStorageCity();
+    FindBestDistributionCity(500);
 
 }
 
@@ -127,7 +119,7 @@ void CityGraph<T>:: DecideMostVacStorageCity()
     string re;
     for (int i = 0; i < 105; i++)
     {
-
+        cout << "i: " << i << endl;
         Vex vex = v.at(i);
         sum+=FilterMostTotalCost(BEIJING - 1, vex.id - 1);
         sum+=FilterMostTotalCost(SHANGHAI - 1, vex.id - 1);
@@ -138,6 +130,7 @@ void CityGraph<T>:: DecideMostVacStorageCity()
             max = sum;
             re = vex.name;
         }
+        cout << "Sum: " << sum << endl;
         sum = 0;
     }
     cout <<"Best storage city is" << re << endl;
@@ -487,9 +480,9 @@ void CityGraph<T>::dfs(int s, bool* visited, string ss)
         return;
     }
     visited[s] = true;
-    ss += to_string(s + 1);
-    str_paths.push_back(ss);
-    //cout << ss << endl;
+    onepath.push_back(s + 1);
+    cout << ss << endl;
+    allpath.push_back(onepath);
     for (int i = 0; i < n; i++)
     {
         if (!visited[i] && map[s][i] > 0)
@@ -507,9 +500,9 @@ int CityGraph<T>:: FilterShortest(int start, int end)
 {
     DFS(start);
     vector<vector<int>> rere;
-    for (int i = 0; i < str_paths.size(); i++)
+    for (int i = 0; i < onepath.size(); i++)
     {
-        string ss = str_paths.at(i);
+        string ss = onepath.at(i);
         vector<int> r;
         for (int j = 0; j < ss.length(); j++)
         {
@@ -551,31 +544,29 @@ template <class T>
 int CityGraph<T>::FilterMostTotalCost(int start, int end)
 {
     DFS(start);
+
     vector<vector<int>> rere;
-    for (int i = 0; i < str_paths.size(); i++)
+    for (int i = 0; i < allpath.size(); i++)
     {
-        string ss = str_paths.at(i);
-        vector<int> r;
-        for (int j = 0; j < ss.length(); j++)
+        vector<int>ss = allpath.at(i);
+        if (ss.back() - 1 == end)
         {
-            r.push_back(int(ss[j]) - 48);
-        }
-        if (r.back() - 1 == end)
-        {
-            rere.push_back(r);
+            rere.push_back(ss);
         }
 
     }
+
     int sum;
     int min = INT_MAX;
     int min_index = 0;
     for (int i = 0; i < rere.size(); i++)
     {
+
         int total = 0;
-        vector<int> v = rere.at(i);
-        for (int j = 0; j < v.size() - 1; j++)
+        vector<int> v2 = rere.at(i);
+        for (int j = 0; j < v2.size() - 1; j++)
         {
-            total += map[v.at(j) - 1][v.at(j + 1) - 1];
+            total += map[v2.at(j)-1][v2.at(j + 1)-1];
         }
         sum += total;
         if (total < min)
@@ -583,14 +574,16 @@ int CityGraph<T>::FilterMostTotalCost(int start, int end)
             min = total;
             min_index = i;
         }
+
     }
+
     return sum;
 }
 
 template <class T>
 void CityGraph<T>:: readFromeFile()
 {
-    ifstream myfile("F:\\Study\\GITSTROGRE\\algorithm-practice\\w.txt");
+    ifstream myfile("F:\\tans\\algorithm-practice\\w.txt");
 
     for (int i = 0; i < 319; i++)
     {
@@ -619,7 +612,7 @@ void CityGraph<T>:: readFromeFile()
 
 
     //read vertices info
-    ifstream myfilev("F:\\Study\\GITSTROGRE\\algorithm-practice\\v.txt");
+    ifstream myfilev("F:\\tans\\algorithm-practice\\v.txt");
 
     for (int i = 0; i < 105; i++)
     {
@@ -636,6 +629,8 @@ void CityGraph<T>:: readFromeFile()
 
         getline(myfilev,temp);//read  latitude
         double latitude = stod(temp);
+
+
 
         getline(myfilev,temp);//read confirmed
         int confirmed = stoi(temp);
@@ -655,7 +650,7 @@ void CityGraph<T>:: readFromeFile()
     }
 
      myfilev.close();
-
+     cout << "done" << endl;
 //    for (int i = 0; i < 105; i++)
 //    {
 //     cout<<v[i].name<<endl;

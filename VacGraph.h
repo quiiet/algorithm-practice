@@ -79,7 +79,8 @@ private:
     T** graphMatrix;         // An adjacent matrix of the WMGraph
     vector<Edge> edgeSet;    // Set storing edges in the graph.
     vector<Edge> edges;      //
-    vector <string> str_paths;//保存路径
+    vector <int> onepath;//保存路径
+    vector <vector <int>> allpath;//保存路径
     vector<int> re;
     vector<Vex> v;
     stack<int> stacks;
