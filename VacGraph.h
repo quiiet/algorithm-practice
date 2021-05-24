@@ -23,6 +23,7 @@
 #include "myExceptions.h"
 #include <stack>
 #include <fstream>
+#include <queue>
 
 #define MAX_SIZE 128
 #define INF 65535
@@ -36,8 +37,7 @@ typedef struct Vex {
     double latitude;  // Latitude of the city.
     int confirmed;    // Amount of confirmed cases in the city.
     int recovered;    // Amount of recovered cases in the city.
-    int death;        // Amount of death cases in the city.
-    int ability;      // The city's anti-epidemic ability (recovered cases / confirmed cases).
+    double ability;      // The city's anti-epidemic ability (recovered cases / confirmed cases).
 } City;
 
 // The edge structure.
@@ -68,6 +68,10 @@ public:
     // Find out the city that can bring most benefits with given vaccination.
     void DecideVacRequirementLevel(int virus_influence);
     // Figure out the requirement level of a city towards vaccination when a new virus breaks out.
+    double calInfluence(int i,int numOfVaccine);
+    //Calculate the city's influence
+    double calVirusEffect(int i, double virusEffectINIT);
+    //Calculate the city's virus effect
 private:
     int vertexNum;           // Number of vertices.
     int edgeNum;             // Number of edges.
@@ -77,10 +81,10 @@ private:
     vector<Edge> edges;      //
     vector <string> str_paths;//保存路径
     vector<int> re;
-    vector<Vex> vexes;
+    vector<Vex> v;
     stack<int> stacks;
     int n = 105;
-    int **a;                 //Distance matrix
+    int **map;                 //Distance matrix
     bool visited[5] = { false,false, false, false, false };
 private:
     bool IsExist(int srcVertex, int destVertex);
