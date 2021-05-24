@@ -9,10 +9,10 @@
 #ifndef VACGRAPH_H
 #define VACGRAPH_H
 
-#define BEIJING 30
+#define BEIJING 8
 #define SHANGHAI 1
-#define GUANGZHOU 123
-#define WUHAN 242
+#define GUANGZHOU 31
+#define WUHAN 69
 
 #include <sstream>
 #include <iostream>
@@ -86,7 +86,6 @@ private:
     stack<int> stacks;
     int n = 105;
     int **map;                 //Distance matrix
-    bool visited[5] = { false,false, false, false, false };
 private:
     bool IsExist(int srcVertex, int destVertex);
     // Judge whether there's an edge between two specified vertices.
@@ -102,7 +101,7 @@ private:
     // Delete the edge (i,j) if it exists.
     void DFS(int s);
     void dfs(int s, bool* visited, string ss);
-    int FilterShortest(int start, int end);
+    int FilterShortest(int start, int end, int route);
     //Find minumun cost between two vertices
     int FilterMostTotalCost(int start, int end);
     //Finid maxmun total cost of all path between two vertices
