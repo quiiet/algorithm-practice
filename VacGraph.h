@@ -22,6 +22,7 @@
 #include "arrayQueue.h"
 #include "myExceptions.h"
 #include <stack>
+#include <fstream>
 
 #define MAX_SIZE 128
 #define INF 65535
@@ -76,8 +77,9 @@ private:
     vector<Edge> edges;      //
     vector <string> str_paths;//保存路径
     vector<int> re;
+    vector<Vex> vexes;
     stack<int> stacks;
-    int n;
+    int n = 105;
     int **a;                 //Distance matrix
     bool visited[5] = { false,false, false, false, false };
 private:

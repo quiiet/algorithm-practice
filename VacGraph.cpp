@@ -19,6 +19,7 @@ CityGraph<T>::CityGraph(int vertices)
 {
     vertexNum = vertices;
     n = vertices;
+    cout << "ug" << endl;
     edgeNum = 0;
     graphMatrix = new T*[vertexNum + 1];
     for (int i = 1; i <= vertexNum; i++) {
@@ -30,9 +31,11 @@ CityGraph<T>::CityGraph(int vertices)
             graphMatrix[i][j] = 0;
         }
     }
+    cout << "ug" << endl;
     //initialize distance matrix
     a = new int*[n];
     for (int i = 0; i < n; i++) a[i] = new int[n];
+    cout << "ug" << endl;
     readFromeFile();
     DecideMostVacStorageCity();
 }
@@ -262,7 +265,7 @@ void CityGraph<T>::dfs(int s, bool* visited, string ss)
         if (!visited[i] && a[s][i] > 0)
         {
             //cout << s+1 << " "; visited[s] = true;
-            dfs2(i, visited, ss);
+            dfs(i, visited, ss);
             //cout << endl;
         }
     }
@@ -362,6 +365,7 @@ void CityGraph<T>:: readFromeFile()
     {
         string temp;
         getline(myfile,temp);
+        cout << temp << endl;
         int v = stoi(temp);
         getline(myfile,temp);
         int u = stoi(temp);
