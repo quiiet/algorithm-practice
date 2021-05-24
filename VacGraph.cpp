@@ -37,7 +37,7 @@ CityGraph<T>::CityGraph(int vertices)
     readFromeFile();
     //FindBestVacAssistanceCity();
     //DecideMostVacStorageCity();
- //   FindBestDistributionCity(20000);
+   FindBestDistributionCity(20000);
     DecideVacRequirementLevel(1);
 
 }

@@ -10,6 +10,5 @@ int main(int argc, char *argv[])
     CityGraph<int> *c = new CityGraph<int>(105);
 
 
-
     return a.exec();
 }
