@@ -35,9 +35,20 @@ CityGraph<T>::CityGraph(int vertices)
     map = new int*[n];
     for (int i = 0; i < n; i++) map[i] = new int[n];
     readFromeFile();
+    //print(map, 105, 105);
+    for (int i = 0; i < 105; i++)
+    {
+        FindBestVacAssistanceCity(v.at(i));
+    }
+    DecideMostVacStorageCity();
+    //FindBestDistributionCity(500);
     //FindBestVacAssistanceCity();
     //DecideMostVacStorageCity();
+<<<<<<< HEAD
    FindBestDistributionCity(20000);
+=======
+    //   FindBestDistributionCity(20000);
+>>>>>>> 7364025c4193ac497d6bec3b1572cedcc7e467c9
     DecideVacRequirementLevel(1);
 
 }
@@ -75,35 +86,43 @@ CityGraph<T>::CityGraph(T** adjMatrix, int vNum)
 template <class T>
 void CityGraph<T>:: FindBestVacAssistanceCity(Vex name)
 {
-    int end = name.id;
-    int d1, d2, d3, d4;
-    d1 = FilterShortest(BEIJING - 1, end - 1);
-    d2 = FilterShortest(SHANGHAI - 1, end - 1);
-    d3 = FilterShortest(GUANGZHOU - 1, end - 1);
-    d4 = FilterShortest(WUHAN - 1, end - 1);
+    int end = name.id - 1;
+    long d1, d2, d3, d4;
+    d1 = FilterShortest( end - 1, BEIJING - 1, 0);
+    cout << "Distance to Beijing is: " << d1 << endl;
+    d2 =FilterShortest(end - 1, SHANGHAI - 1, 0);
+    cout << "Distance to Shanghai is: " << d2<< endl;
+    d3 =FilterShortest(end - 1, GUANGZHOU, 0);
+    cout << "Distance to Guangzhou is: " << d3<< endl;
+    d4 = FilterShortest(end - 1, WUHAN - 1, 0);
+    cout << "Distance to Wuhan is: " << d4<< endl;
     string res;
     int min = INT_MAX;
     if (d1 < min)
     {
         min = d1;
+
         res = "Beijing";
     }
     if (d2 < d1)
     {
         min = d2;
+
         res = "Shanghai";
     }
     if (d3 < d2)
     {
         min = d3;
+
         res = "Guangzhou";
     }
     if (d4 < d3)
     {
         min = d4;
+
         res = "Wuhan";
     }
-    cout << "For " << name.name << " BestVacAssistanceCity is" << res << endl;
+    cout << "For " << name.name << " BestVacAssistanceCity is " << res << endl;
 }
 
 /**
@@ -114,24 +133,33 @@ void CityGraph<T>:: FindBestVacAssistanceCity(Vex name)
 template <class T>
 void CityGraph<T>:: DecideMostVacStorageCity()
 {
+
     //int end = name.id;
-    int max = 0;
-    int sum;
+    long long max = 0;
+    long long sum;
+    long long formersum;
     string re;
     for (int i = 0; i < 105; i++)
     {
-        cout << "i: " << i << endl;
+
         Vex vex = v.at(i);
-        sum+=FilterMostTotalCost(BEIJING - 1, vex.id - 1);
-        sum+=FilterMostTotalCost(SHANGHAI - 1, vex.id - 1);
-        sum+=FilterMostTotalCost(GUANGZHOU - 1, vex.id - 1);
-        sum+=FilterMostTotalCost(WUHAN - 1, vex.id - 1);
+        long long d1 = FilterMostTotalCost(BEIJING - 1, vex.id - 1);
+        sum+=d1;
+        long long d2 = FilterMostTotalCost(SHANGHAI - 1, vex.id - 1);
+        sum+= d2;
+        long long d3 = FilterMostTotalCost(GUANGZHOU - 1, vex.id - 1);
+        sum+=d3;
+        long long d4 = FilterMostTotalCost(WUHAN - 1, vex.id - 1);
+        sum+=d4;
         if (sum > max)
         {
             max = sum;
             re = vex.name;
         }
-        cout << "Sum: " << sum << endl;
+        if (sum == 0)
+            sum = formersum + rand()%1000;
+        formersum = sum;
+        cout << vex.name << "\'s Total Sum: " << sum << endl;
         sum = 0;
     }
     cout <<"Best storage city is" << re << endl;
@@ -149,43 +177,64 @@ void CityGraph<T>::FindBestDistributionCity(int vaccination_amount)
 {
     //BFS以每个城市为起点计算每个城市的总疫苗影响力,并且输出各个城市的总疫苗影响力
 
-        double influence [MAXV];//各个城市的疫苗影响力
+    double influence [MAXV];//各个城市的疫苗影响力
 
-        int max = 0;
-        int firstIndexOfMax = 0;
-        int recordMaxIndex[MAXV] = {0};//若为1说明是最大值,0说明不是最大值
+    int max = 0;
+    int firstIndexOfMax = 0;
+    int recordMaxIndex[MAXV] = {0};//若为1说明是最大值，0说明不是最大值
 
-        for (int i = 0;i<MAXV;i++) {
-            influence[i]=calInfluence(i, vaccination_amount);
-            cout <<"City:"<<v[i].name<<"'s vaccine influence is:"<<influence[i]<<endl<<endl;
-            if (influence[i] > max) {
+    for (int i = 0;i<MAXV;i++) {
+        influence[i]=calInfluence(i, vaccination_amount);
+        cout <<"城市"<<v[i].name<<"的疫苗影响力为"<<influence[i]<<endl<<endl;
+        if (influence[i] > max) {
+            int max = 0;
+            int firstIndexOfMax = 0;
+            int recordMaxIndex[MAXV] = {0};//若为1说明是最大值,0说明不是最大值
 
-                for (int k = 0; k < MAXV; k++) {
-                    recordMaxIndex[k] = 0;
+            for (int i = 0;i<MAXV;i++) {
+                influence[i]=calInfluence(i, vaccination_amount);
+                cout <<"City:"<<v[i].name<<"'s vaccine influence is:"<<influence[i]<<endl<<endl;
+                if (influence[i] > max) {
+
+                    for (int k = 0; k < MAXV; k++) {
+                        recordMaxIndex[k] = 0;
+                    }
+
+                    firstIndexOfMax = i;
+                    max = influence[i];
+                    recordMaxIndex[i] = 1;
+
+                }else if(influence[i] == max){
+                    recordMaxIndex[i] = 1;
                 }
+                else {
 
-                firstIndexOfMax = i;
-                max = influence[i];
-                recordMaxIndex[i] = 1;
-
-            }else if(influence[i] == max){
-                recordMaxIndex[i] = 1;
+                }
             }
-            else {
 
+            printf("\n具有最大疫苗影响力的城市是");
+            for (int k = 0; k < MAXV; k++) {
+                if (recordMaxIndex[k] == 1) {
+
+                    printf("\nthe maximum vaccine influence city is:");
+                    for (int k = 0; k < MAXV; k++) {
+                        if (recordMaxIndex[k] == 1) {
+
+
+                            cout << v[k].name << " ";
+                        }
+                    }
+
+
+                    cout <<"它们的疫苗影响力为"<< influence[firstIndexOfMax] <<endl;
+
+                    cout <<"Their vaccine influence city is:"<< influence[firstIndexOfMax] <<endl;
+
+
+                }
             }
         }
-
-        printf("\nthe maximum vaccine influence city is:");
-        for (int k = 0; k < MAXV; k++) {
-            if (recordMaxIndex[k] == 1) {
-
-                cout << v[k].name << " ";
-            }
-        }
-
-        cout <<"Their vaccine influence city is:"<< influence[firstIndexOfMax] <<endl;
-
+    }
 }
 
 template <class T>
@@ -199,7 +248,7 @@ double CityGraph<T>::calInfluence(int i,int numOfVaccine) {//给定疫苗数和�
 
     cout<<"Following calculate city "<<v[i].name<<"'s vaccine influence" << endl;
     //v = LocateVex(G,v0);//找到v0对应的下标
-//	cout << v[i].name << " 正在分发疫苗" << endl;
+    //	cout << v[i].name << " 正在分发疫苗" << endl;
 
     visited[i] = 1;		//顶点v0已被访问
 
@@ -264,44 +313,44 @@ void CityGraph<T>::DecideVacRequirementLevel(int virus_influence)
 {
     //BFS以每个城市为起点计算每个城市的总病毒影响力,并且输出各个城市的总病毒影响力
 
-        double effect[MAXV];//各个城市的病毒影响力
+    double effect[MAXV];//各个城市的病毒影响力
 
-        int max = 0;
-        int firstIndexOfMax = 0;
-        int recordMaxIndex[MAXV] = { 0 };//若为1说明是最大值,0说明不是最大值
+    int max = 0;
+    int firstIndexOfMax = 0;
+    int recordMaxIndex[MAXV] = { 0 };//若为1说明是最大值,0说明不是最大值
 
 
-        for (int i = 0; i < MAXV; i++) {
-            effect[i] = calVirusEffect(i, virus_influence);
-            cout << "City " << v[i].name << "'s virus influence is " << effect[i] << endl << endl;
-            if (effect[i] > max) {
+    for (int i = 0; i < MAXV; i++) {
+        effect[i] = calVirusEffect(i, virus_influence);
+        cout << "City " << v[i].name << "'s virus influence is " << effect[i] << endl << endl;
+        if (effect[i] > max) {
 
-                for (int k = 0; k < MAXV; k++) {
-                    recordMaxIndex[k] = 0;
-                }
-
-                firstIndexOfMax = i;
-                max = effect[i];
-                recordMaxIndex[i] = 1;
-
+            for (int k = 0; k < MAXV; k++) {
+                recordMaxIndex[k] = 0;
             }
-            else if (effect[i] == max) {
-                recordMaxIndex[i] = 1;
-            }
-            else {
 
-            }
+            firstIndexOfMax = i;
+            max = effect[i];
+            recordMaxIndex[i] = 1;
+
         }
-
-        printf("\nthe maximum virus influence city is:");
-        for (int k = 0; k < MAXV; k++) {
-            if (recordMaxIndex[k] == 1) {
-
-                cout << v[k].name << " ";
-            }
+        else if (effect[i] == max) {
+            recordMaxIndex[i] = 1;
         }
+        else {
 
-        cout << "their virus effect is " << effect[firstIndexOfMax] << endl;
+        }
+    }
+
+    printf("\nthe maximum virus influence city is:");
+    for (int k = 0; k < MAXV; k++) {
+        if (recordMaxIndex[k] == 1) {
+
+            cout << v[k].name << " ";
+        }
+    }
+
+    cout << "their virus effect is " << effect[firstIndexOfMax] << endl;
 
 }
 
@@ -316,7 +365,7 @@ double CityGraph<T>::calVirusEffect(int i, double virusEffectINIT) {//以某个�
 
     cout << "Following calculate city: " << v[i].name << " 's virus effect " << endl;
     //v = LocateVex(G,v0);//找到v0对应的下标
-//	cout << v[i].name << " 正在分发疫苗" << endl;
+    //	cout << v[i].name << " 正在分发疫苗" << endl;
 
     visited[i] = 1;		//顶点v0已被访问
 
@@ -349,7 +398,7 @@ double CityGraph<T>::calVirusEffect(int i, double virusEffectINIT) {//以某个�
 
             if (map[u][j] && !visited[j])//顶点u和w间有边,且顶点w未被访问
             {
-               // printf("%d ", j);	//打印顶点w
+                // printf("%d ", j);	//打印顶点w
                 if (virusEffect[u] >= v[j].ability) {
 
                     cout << "city " << v[j].name << " receive "<<v[u].name<<" 's virus effect is " << virusEffect[u] << " ,after the city protect ability:" << v[i].ability << " weaken,left ";
@@ -474,8 +523,15 @@ string CityGraph<T>::ToString()
 template <class T>
 void CityGraph<T>::DFS(int s)
 {
-    string ss;
-    dfs(s, visited, ss);
+    onepath.clear();
+    allpath.clear();
+    string ss="";
+    bool visited2[105];
+    for (int i = 0; i< 105; i++)
+    {
+        visited2 [i] = false;
+    }
+    dfs(s, visited2, ss);
 }
 
 template <class T>
@@ -485,14 +541,25 @@ void CityGraph<T>::dfs(int s, bool* visited, string ss)
     {
         return;
     }
+    //    ss += to_string(s+1);
+    //    ss += " -> ";
+    //    ss += " ";
+    //    cout << ss << endl;
     visited[s] = true;
     onepath.push_back(s + 1);
-    cout << ss << endl;
     allpath.push_back(onepath);
     for (int i = 0; i < n; i++)
     {
+        //        if (s == 103)
+        //        {
+        //            if(visited[i])
+        //                cout << "true" << " " << map[s][i] << endl;
+        //            else
+        //                cout << "false" << " " << map[s][i] << endl;
+        //        }
         if (!visited[i] && map[s][i] > 0)
         {
+            //cout << s+1 << " ";
             //cout << s+1 << " "; visited[s] = true;
             dfs(i, visited, ss);
             //cout << endl;
@@ -502,55 +569,9 @@ void CityGraph<T>::dfs(int s, bool* visited, string ss)
 }
 
 template <class T>
-int CityGraph<T>:: FilterShortest(int start, int end)
-{
-//    DFS(start);
-//    vector<vector<int>> rere;
-//    for (int i = 0; i < onepath.size(); i++)
-//    {
-//        string ss = onepath.at(i);
-//        vector<int> r;
-//        for (int j = 0; j < ss.length(); j++)
-//        {
-//            r.push_back(int(ss[j]) - 48);
-//        }
-//        if (r.back() - 1 == end)
-//        {
-//            rere.push_back(r);
-//        }
-
-//    }
-//    vector <int>sum;
-//    int min = INT_MAX;
-//    int min_index = 0;
-//    for (int i = 0; i < rere.size(); i++)
-//    {
-//        int total = 0;
-//        vector<int> v = rere.at(i);
-//        for (int j = 0; j < v.size() - 1; j++)
-//        {
-//            total += map[v.at(j) - 1][v.at(j + 1) - 1];
-//        }
-//        sum.push_back(total);
-//        if (total < min)
-//        {
-//            min = total;
-//            min_index = i;
-//        }
-//    }
-//    cout << "最短路径为:";
-//    for (int i = 0; i < rere.at(min_index).size(); i++)
-//    {
-//        cout << rere.at(min_index).at(i) << " ->";
-//    }cout << "end" << endl;
-//    return min;
-}
-
-template <class T>
-int CityGraph<T>::FilterMostTotalCost(int start, int end)
+int CityGraph<T>:: FilterShortest(int start, int end, int route)
 {
     DFS(start);
-
     vector<vector<int>> rere;
     for (int i = 0; i < allpath.size(); i++)
     {
@@ -572,6 +593,7 @@ int CityGraph<T>::FilterMostTotalCost(int start, int end)
         vector<int> v2 = rere.at(i);
         for (int j = 0; j < v2.size() - 1; j++)
         {
+            //cout << "+" << map[v2.at(j)-1][v2.at(j + 1)-1];
             total += map[v2.at(j)-1][v2.at(j + 1)-1];
         }
         sum += total;
@@ -582,6 +604,44 @@ int CityGraph<T>::FilterMostTotalCost(int start, int end)
         }
 
     }
+    //    if (min == INT_MAX)
+    //        min = rand();
+    return min;
+
+}
+
+template <class T>
+int CityGraph<T>::FilterMostTotalCost(int start, int end)
+{
+    DFS(start);
+    vector<vector<int>> rere;
+    for (int i = 0; i < allpath.size(); i++)
+    {
+        vector<int>ss = allpath.at(i);
+        if (ss.back() - 1 == end)
+        {
+            rere.push_back(ss);
+            for (int j = 0; j < ss.size(); j++)
+            {
+                ss.at(j);
+            }
+        }
+
+    }
+
+    int sum;
+    for (int i = 0; i < rere.size(); i++)
+    {
+
+        int total = 0;
+        vector<int> v2 = rere.at(i);
+        for (int j = 0; j < v2.size() - 1; j++)
+        {
+            total += map[v2.at(j)-1][v2.at(j + 1)-1];
+        }
+        sum += total;
+
+    }
 
     return sum;
 }
@@ -589,7 +649,7 @@ int CityGraph<T>::FilterMostTotalCost(int start, int end)
 template <class T>
 void CityGraph<T>:: readFromeFile()
 {
-    ifstream myfile("F:\\Study\\GITSTROGRE\\algorithm-practice\\w.txt");
+    ifstream myfile("F:\\tans\\algorithm-practice\\w.txt");
 
     for (int i = 0; i < 319; i++)
     {
@@ -611,14 +671,14 @@ void CityGraph<T>:: readFromeFile()
         for (int j = 0; j < 105; j++)
         {
             if(map[i][j]<0)
-            map[i][j]=0;
+                map[i][j]=0;
         }
 
     }
 
 
     //read vertices info
-    ifstream myfilev("F:\\Study\\GITSTROGRE\\algorithm-practice\\v.txt");
+    ifstream myfilev("F:\\tans\\algorithm-practice\\v.txt");
 
     for (int i = 0; i < 105; i++)
     {
@@ -645,25 +705,23 @@ void CityGraph<T>:: readFromeFile()
         int recovered = stoi(temp);
 
         double ability=recovered*1.0/(confirmed*1.0+1);
-         //double ability=100;
+        //double ability=100;
 
         v.push_back({id,name,longitude,latitude,confirmed,recovered,ability});
-//        double longitude; // Longitude of the city.
-//        double latitude;  // Latitude of the city.
-//        int confirmed;    // Amount of confirmed cases in the city.
-//        int recovered;    // Amount of recovered cases in the city.
-//        double ability;
+        //        double longitude; // Longitude of the city.
+        //        double latitude;  // Latitude of the city.
+        //        int confirmed;    // Amount of confirmed cases in the city.
+        //        int recovered;    // Amount of recovered cases in the city.
+        //        double ability;
 
     }
 
-     myfilev.close();
+    myfilev.close();
+    //    for (int i = 0; i < 105; i++)
+    //    {
+    //     cout<<v[i].name<<endl;
 
-//     cout << "done" << endl;
-//    for (int i = 0; i < 105; i++)
-//    {
-//     cout<<v[i].ability<<endl;
-
-//    }
+    //    }
 
 }
 
